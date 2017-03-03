@@ -12,8 +12,8 @@ a hacky vim syntax file for twtxt files.
 
 # License
 
-twtxt.vim - a hacky vim syntax file for twtxt files.
-Copyright (C) 2017 Jervis Tetch <jervis@nasarok.de>
+twtxt.vim - a hacky vim syntax file for twtxt files.<br>
+Copyright (C) 2017 Jervis Tetch <<jervis@nasarok.de>>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
