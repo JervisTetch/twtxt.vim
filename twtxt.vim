@@ -16,14 +16,11 @@ syn match twtxtMentionAltNick	/\(@\@<=[^<]\{1}\)\(.\{-}\)\_s\@=/
 syn match twtxtMentionURL	/\(\s\|<\)\@<=\(http\|https\)\(.\{-}\)>\@=/
 syn match twtxtMentionGt	/\(\(http\|https\).*\)\@<=>/
 
-syn match twtxtTimestamp	/^.\{-}Z/
-    \contains=twtxtTimestampC,twtxtTimestampD
+syn match twtxtTimestamp	/^.\{-}Z/ contains=twtxtTimestampC,twtxtTimestampD
 " characters in timestamp:
-syn match twtxtTimeStampC	/\(T\|Z\)/
-    \contained
+syn match twtxtTimeStampC	/\(T\|Z\)/ contained
 " delimiters (:.-) in timestamp:
-syn match twtxtTimeStampD	/[\.:-]/
-    \contained
+syn match twtxtTimeStampD	/[\.:-]/ contained
 
 syn match twtxtHashtag		/#.\{-}\(\_s\)/
 
