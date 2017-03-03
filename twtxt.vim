@@ -31,11 +31,11 @@ syn match twtxtMentionAltNick	/\(@\@<=[^<]\{1}\)\(.\{-}\)\_s\@=/
 syn match twtxtMentionURL	/\(\s\|<\)\@<=\(http\|https\)\(.\{-}\)>\@=/
 syn match twtxtMentionGt	/\(\(http\|https\).*\)\@<=>/
 
-syn match twtxtTimestamp	/^.\{-}\@<=\t/ contains=twtxtTimestampC,twtxtTimestampD
+syn match twtxtTimestamp	/^.\{-}\t\@=/ contains=twtxtTimestampC,twtxtTimestampD
 " characters in timestamp:
-syn match twtxtTimeStampC	/\(T\|Z\)/ contained
+syn match twtxtTimestampC	/[TtZz]\{1}/ contained
 " delimiters (:.-) in timestamp:
-syn match twtxtTimeStampD	/[\.:-]/ contained
+syn match twtxtTimestampD	/[\.:\+-]/ contained
 
 syn match twtxtHashtag		/#.\{-}\(\_s\)/
 
