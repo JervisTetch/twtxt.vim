@@ -17,7 +17,7 @@
 " Vim syntax file
 " Language:	twtxt
 " Maintainer:	Jervis Tetch <jervis@nasarok.de>
-" Last Change:	03 March 2017
+" Last Change:	08 March 2017
 
 if exists("b:current_syntax")
     finish
