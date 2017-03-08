@@ -26,34 +26,34 @@ endif
 syn clear
 syn case ignore
 
-syn match twtxtStatus		/\v^.*$/
+syn match twtxtStatus			/\v^.*$/
 	\ contains=twtxtComment,
 		\twtxtHashtag,
 		\twtxtMention,
 		\twtxtTimestamp,
 		\twtxtURL
-syn match twtxtComment		/^#\s.*$/
+syn match twtxtComment			/^#\s.*$/
 	\ contains=twtxtHashtag,
 		\twtxtMention,
 		\twtxtTimestamp,
 		\twtxtURL
-syn match twtxtTimestamp	/\v\d{4}-\d{2}-\d{2}t\d{2}:\d{2}:\d{2}[0-9\.:+z]*/
+syn match twtxtTimestamp		/\v\d{4}-\d{2}-\d{2}t\d{2}:\d{2}:\d{2}[0-9\.:+z]*/
 	\ contained
 	\ contains=twtxtDelimiter,
 		\twtxtSpecialChar,
 		\twtxtNumber
-syn match twtxtMention		/\v\zs\@.{-}\ze\_s/
+syn match twtxtMention			/\v\zs\@.{-}\ze\_s/
 	\ contained
 	\ contains=twtxtAt,
 		\twtxtGt,
 		\twtxtLt,
 		\twtxtNick,
 		\twtxtURL
-syn match twtxtNumber		/\d/
+syn match twtxtNumber			/\d/
 	\ contained
-syn match twtxtSpecialChar	/[zt]/
+syn match twtxtSpecialChar		/[zt]/
 	\ contained
-syn match twtxtDelimiter	/[\.:-]/
+syn match twtxtDelimiter		/[\.:-]/
 	\ contained
 syn match twtxtNick			/\zs.\{-}\ze\_s/
 	\ contained
@@ -74,21 +74,21 @@ syn match twtxtLt			/</
 syn match twtxtURL			/\zs\(http\)s\?:.\{-}\ze\(>\|\_s\)/
 	\ contained
 	\ nextgroup=twtxtGt
-syn match twtxtHashtag		/\zs#\S\+\ze\_s/
+syn match twtxtHashtag			/\zs#\S\+\ze\_s/
 	\ contained
 
 let b:current_syntax = "twtxt"
 
-hi def link twtxtAt				Special
+hi def link twtxtAt			Special
 hi def link twtxtComment		Comment
 hi def link twtxtDelimiter		Delimiter
-hi def link twtxtGt				Statement
+hi def link twtxtGt			Statement
 hi def link twtxtHashtag		Keyword
-hi def link twtxtLt				Statement
+hi def link twtxtLt			Statement
 hi def link twtxtNick			Label
 hi def link twtxtNumber			Number
 hi def link twtxtStatus			String
-hi def link twtxtSpecialChar	SpecialChar
+hi def link twtxtSpecialChar		SpecialChar
 hi def link twtxtURL			Underlined
 
 " vim: ts=4
