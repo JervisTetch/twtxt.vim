@@ -1,4 +1,4 @@
-"    twtxt.vim - a hacky vim syntax file for twtxt files.
+"    TWTXt.vim - a hacky vim syntax file for twtxt files.
 "    Copyright (C) 2017 Jervis Tetch <jervis@nasarok.de>
 "
 "    This program is free software: you can redistribute it and/or modify
@@ -12,8 +12,9 @@
 "    GNU General Public License for more details.
 "
 "    You should have received a copy of the GNU General Public License
-"    along with this program.  If not, see <http://www.gnu.org/licenses/>. Vim syntax file
+"    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+" Vim syntax file
 " Language:	twtxt
 " Maintainer:	Jervis Tetch <jervis@nasarok.de>
 " Last Change:	03 March 2017
@@ -22,35 +23,72 @@ if exists("b:current_syntax")
     finish
 endif
 
-syn case match
+syn clear
+syn case ignore
 
-syn match twtxtMentionAt	/@\(\_s\)\@!/
-syn match twtxtMentionLt	/\(@\)\@<=</
-syn match twtxtMentionNick	/\(@<\{1}\)\@<=\(.\{-}\)\_s\@=/
-syn match twtxtMentionAltNick	/\(@\@<=[^<]\{1}\)\(.\{-}\)\_s\@=/
-syn match twtxtMentionURL	/\(\s\|<\)\@<=\(http\|https\)\(.\{-}\)>\@=/
-syn match twtxtMentionGt	/\(\(http\|https\).*\)\@<=>/
-
-syn match twtxtTimestamp	/^.\{-}\t\@=/ contains=twtxtTimestampC,twtxtTimestampD
-" characters in timestamp:
-syn match twtxtTimestampC	/[TtZz]\{1}/ contained
-" delimiters (:.-) in timestamp:
-syn match twtxtTimestampD	/[\.:\+-]/ contained
-
-syn match twtxtHashtag		/#.\{-}\(\_s\)/
+syn match twtxtStatus		/\v^.*$/
+	\ contains=twtxtComment,
+		\twtxtHashtag,
+		\twtxtMention,
+		\twtxtTimestamp,
+		\twtxtURL
+syn match twtxtComment		/^#\s.*$/
+	\ contains=twtxtHashtag,
+		\twtxtMention,
+		\twtxtTimestamp,
+		\twtxtURL
+syn match twtxtTimestamp	/\v\d{4}-\d{2}-\d{2}t\d{2}:\d{2}:\d{2}[0-9\.:+z]*/
+	\ contained
+	\ contains=twtxtDelimiter,
+		\twtxtSpecialChar,
+		\twtxtNumber
+syn match twtxtMention		/\v\zs\@.{-}\ze\_s/
+	\ contained
+	\ contains=twtxtAt,
+		\twtxtGt,
+		\twtxtLt,
+		\twtxtNick,
+		\twtxtURL
+syn match twtxtNumber		/\d/
+	\ contained
+syn match twtxtSpecialChar	/[zt]/
+	\ contained
+syn match twtxtDelimiter	/[\.:-]/
+	\ contained
+syn match twtxtNick			/\zs.\{-}\ze\_s/
+	\ contained
+	\ nextgroup=twtxtURL
+	\ skipwhite
+syn match twtxtGt			/>/
+	\ contained
+	\ nextgroup=twtxtText
+	\ skipwhite
+syn match twtxtAt			/@/
+	\ contained
+	\ nextgroup=twtxtLt,
+		\twtxtNick
+syn match twtxtLt			/</
+	\ contained
+	\ nextgroup=twtxtURL,
+		\twtxtNick
+syn match twtxtURL			/\zs\(http\)s\?:.\{-}\ze\(>\|\_s\)/
+	\ contained
+	\ nextgroup=twtxtGt
+syn match twtxtHashtag		/\zs#\S\+\ze\_s/
+	\ contained
 
 let b:current_syntax = "twtxt"
 
-hi def link twtxtMentionAt	Special
-hi def link twtxtMentionLt	Statement
-hi def link twtxtMentionGt	Statement
-hi def link twtxtMentionNick	Label
-hi def link twtxtMentionAltNick	Label
-hi def link twtxtMentionURL	Underlined
+hi def link twtxtAt				Special
+hi def link twtxtComment		Comment
+hi def link twtxtDelimiter		Delimiter
+hi def link twtxtGt				Statement
+hi def link twtxtHashtag		Keyword
+hi def link twtxtLt				Statement
+hi def link twtxtNick			Label
+hi def link twtxtNumber			Number
+hi def link twtxtStatus			String
+hi def link twtxtSpecialChar	SpecialChar
+hi def link twtxtURL			Underlined
 
-hi def link twtxtTimestamp	Number
-hi def link twtxtTimestampD	Label
-hi def link twtxtTimestampC	SpecialChar
-
-hi def link twtxtHashtag	Keyword
-
+" vim: ts=4
